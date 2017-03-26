@@ -14,6 +14,9 @@ class AccountControllerTest
 	{
 		\Aimeos\Aimeos\Base::getAimeos(); // initialize autoloader
 
+		$context = new \Aimeos\MShop\Context\Item\Standard();
+		$context->setView( new \Aimeos\MW\View\Standard() );
+
 		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\AccountController', ['getContext'] );
 
 		$uriBuilder = $this->getMockBuilder( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder' )->getMock();
@@ -24,7 +27,7 @@ class AccountControllerTest
 
 		$response->expects( $this->once() )->method( 'getHeaders' )->will( $this->returnValue( [] ) );
 		$this->object->expects( $this->once() )->method( 'getContext' )
-			->will( $this->returnValue( new \Aimeos\MShop\Context\Item\Standard() ) );
+			->will( $this->returnValue(  ) );
 
 
 		$uriBuilder->setRequest( $request );
