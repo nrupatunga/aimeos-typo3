@@ -1,43 +1,31 @@
 language: php
 sudo: false
 
-matrix:
-  include:
-    - php: 7.1
-      env: TYPO3=^8.0
-    - php: 7.1
-      env: TYPO3=^7.6.0
-    - php: 7.0
-      env: TYPO3=^8.0
-    - php: 7.0
-      env: TYPO3=^7.6.0
-    - php: 5.6
-      env: TYPO3=^7.6.0
-    - php: 5.5
-      env: TYPO3=^6.2.0
+php:
+  - 7.1
+  - 7.0
+  - 5.6
+  - 5.5
 
-addons:
-  apt:
-    packages:
-      - parallel
-
-cache:
-  directories:
-    - $HOME/.composer/cache
-
-
-before_install:
-#  - if php -i | grep -q xdebug; then phpenv config-rm xdebug.ini; fi
+env:
+  - TYPO3_VERSION=^8.6
+  - TYPO3_VERSION=^7.6
+  - TYPO3_VERSION=^6.2
 
 before_script:
-  - composer require typo3/cms="$TYPO3"
-  # Restore composer.json
-  - git checkout composer.json
   - export TYPO3_PATH_WEB=$PWD
+  - composer require typo3/cms="$TYPO3_VERSION"
 
 script:
-   - >
-     echo;
-     echo "Running unit tests";
-     ls -l;
-     Resources/Libraries/bin/phpunit -c Resources/Libraries/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit/
+  - Resources/Libraries/bin/phpunit -c Resources/Libraries/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit/
+
+matrix:
+  exclude:
+    - php: 7.1
+      env: TYPO3_VERSION=^6.2
+    - php: 7.0
+      env: TYPO3_VERSION=^6.2
+    - php: 5.6
+      env: TYPO3_VERSION=^8.6
+    - php: 5.5
+      env: TYPO3_VERSION=^8.6
