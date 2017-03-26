@@ -22,6 +22,7 @@ before_script:
   - export typo3DatabasePassword="";
 
 script:
+  - find 'Tests/Unit' -wholename '*Test.php' 'Resources/Libraries/bin/phpunit -c Resources/Libraries/typo3/cms/typo3/sysext/core/Build/FunctionalTests.xml {}'
   - Resources/Libraries/bin/phpunit -c Resources/Libraries/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit/
 
 matrix:
