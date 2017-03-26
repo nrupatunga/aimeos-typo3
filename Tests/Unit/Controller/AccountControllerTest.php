@@ -14,15 +14,7 @@ class AccountControllerTest
 	{
 		\Aimeos\Aimeos\Base::getAimeos(); // initialize autoloader
 
-		$fcn = function( $context ) {
-			return $context;
-		};
-
-		$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['aimeos']['aimeos_context_groups'] = $fcn;
-		$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['aimeos']['aimeos_context_cache'] = $fcn;
-
-
-		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\AccountController', array( 'dummy' ) );
+		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\AccountController', ['getContext'] );
 
 		$uriBuilder = $this->getMockBuilder( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder' )->getMock();
 		$request = $this->getMockBuilder( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Request' )->getMock();
@@ -31,6 +23,8 @@ class AccountControllerTest
 			->getMock();
 
 		$response->expects( $this->once() )->method( 'getHeaders' )->will( $this->returnValue( [] ) );
+		$this->object->expects( $this->once() )->method( 'getContext' )
+			->will( $this->returnValue( new \Aimeos\MShop\Context\Item\Standard() ) );
 
 
 		$uriBuilder->setRequest( $request );
