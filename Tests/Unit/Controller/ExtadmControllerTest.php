@@ -13,15 +13,23 @@ class ExtadmControllerTest
 	public function setUp()
 	{
 		\Aimeos\Aimeos\Base::getAimeos(); // initialize autoloader
+		$config = \Aimeos\Aimeos\Base::getConfig();
 
-		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\ExtadmController', array( 'dummy' ) );
+		$context = new \Aimeos\MShop\Context\Item\Standard();
+		$context->setView( new \Aimeos\MW\View\Standard() );
+		$context->setConfig( $config );
+
+		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\BasketController', ['getContext'] );
 		$this->view = $this->getMock( 'TYPO3\\CMS\\Fluid\\View\\TemplateView', array(), array(), '', false );
 
-		$objManager = new \TYPO3\CMS\Extbase\Object\ObjectManager();
+		$uriBuilder = $this->getMockBuilder( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder' )->getMock();
+		$request = $this->getMockBuilder( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Request' )->getMock();
+		$response = $this->getMockBuilder( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Response' )
+			->setMethods( ['getHeaders'] )
+			->getMock();
 
-		$uriBuilder = $objManager->get( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder' );
-		$response = $objManager->get( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Response' );
-		$request = $objManager->get( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Request' );
+		$this->object->expects( $this->any() )->method( 'getContext' )->will( $this->returnValue( $context ) );
+
 
 		$uriBuilder->setRequest( $request );
 

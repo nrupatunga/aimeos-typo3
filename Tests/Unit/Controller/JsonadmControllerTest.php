@@ -25,10 +25,9 @@ class JsonadmControllerTest
 			->setMethods( array( 'setStatus' ) )
 			->disableOriginalConstructor()
 			->getMock();
+		$config = \Aimeos\Aimeos\Base::getConfig();
 
-		$objManager = new \TYPO3\CMS\Extbase\Object\ObjectManager();
-		$uriBuilder = $objManager->get( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder' );
-
+		$uriBuilder = $this->getMockBuilder( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder' )->getMock();
 		$uriBuilder->setRequest( $this->request );
 
 		if( method_exists( $response, 'setRequest' ) ) {

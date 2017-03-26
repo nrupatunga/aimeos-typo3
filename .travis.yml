@@ -15,11 +15,6 @@ env:
 before_script:
   - export TYPO3_PATH_WEB=$PWD
   - composer require typo3/cms="$TYPO3_VERSION"
-  - mysql -e 'create database typo3;'
-  - export typo3DatabaseName="typo3";
-  - export typo3DatabaseHost="localhost";
-  - export typo3DatabaseUsername="root";
-  - export typo3DatabasePassword="";
 
 script:
   - Resources/Libraries/bin/phpunit -c Resources/Libraries/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit/
