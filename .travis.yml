@@ -39,4 +39,4 @@ script:
    - >
      echo;
      echo "Running unit tests";
-     Resources/Libraries/bin/phpunit -c Resources/Libraries/vendor/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit/
+     Resources/Libraries/bin/phpunit -c Resources/Libraries/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit/
