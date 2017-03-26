@@ -13,8 +13,6 @@ matrix:
       env: TYPO3=^7.6.0
     - php: 5.6
       env: TYPO3=^7.6.0
-    - php: 5.5
-      env: TYPO3=^6.2.0
 
 addons:
   apt:
@@ -39,4 +37,4 @@ script:
    - >
      echo;
      echo "Running unit tests";
-     .Build/bin/phpunit -c .Build/vendor/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit/
+     Resources/Libraries/bin/phpunit -c Resources/Libraries/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit/
