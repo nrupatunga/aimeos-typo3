@@ -16,11 +16,13 @@ class AccountControllerTest
 
 		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\AccountController', array( 'dummy' ) );
 
-		$objManager = new \TYPO3\CMS\Extbase\Object\ObjectManager();
+		$uriBuilder = $this->getMockBuilder( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder' )->getMock();
+		$request = $this->getMockBuilder( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Request' )->getMock();
+		$response = $this->getMockBuilder( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Response' )
+			->setMethods( ['getHeaders'] )
+			->getMock();
 
-		$uriBuilder = $objManager->get( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder' );
-		$response = $objManager->get( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Response' );
-		$request = $objManager->get( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Request' );
+		$response->expects( $this->once() )->method( 'getHeaders' )->will( $this->returnValue( [] ) );
 
 		$uriBuilder->setRequest( $request );
 
