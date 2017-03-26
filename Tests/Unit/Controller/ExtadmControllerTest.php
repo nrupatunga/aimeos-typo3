@@ -19,7 +19,7 @@ class ExtadmControllerTest
 		$context->setView( new \Aimeos\MW\View\Standard() );
 		$context->setConfig( $config );
 
-		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\BasketController', ['getContext'] );
+		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\ExtadmController', ['getContext'] );
 		$this->view = $this->getMock( 'TYPO3\\CMS\\Fluid\\View\\TemplateView', array(), array(), '', false );
 
 		$uriBuilder = $this->getMockBuilder( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder' )->getMock();

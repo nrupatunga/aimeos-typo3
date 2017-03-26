@@ -19,7 +19,7 @@ class LocaleControllerTest
 		$context->setView( new \Aimeos\MW\View\Standard() );
 		$context->setConfig( $config );
 
-		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\BasketController', ['getContext'] );
+		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\LocaleController', ['getContext'] );
 
 		$uriBuilder = $this->getMockBuilder( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder' )->getMock();
 		$request = $this->getMockBuilder( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Request' )->getMock();
