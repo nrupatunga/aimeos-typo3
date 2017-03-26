@@ -13,7 +13,7 @@ env:
   - TYPO3_VERSION=^6.2
 
 before_script:
-  - export TYPO3_PATH_WEB=$PWD
+  - export TYPO3_PATH_WEB=$PWD/.Build/Web
   - composer require typo3/cms="$TYPO3_VERSION"
 
 script:

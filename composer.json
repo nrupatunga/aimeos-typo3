@@ -53,6 +53,9 @@
 	"extra": {
 		"installer-paths": {
 			"Resources/Private/Extensions/{$name}/": ["type:aimeos-extension"]
+		},
+		"typo3/cms": {
+			"web-dir": ".Build/Web"
 		}
 	},
 	"scripts": {
