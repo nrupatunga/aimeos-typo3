@@ -27,7 +27,6 @@ class BasketControllerTest
 			->setMethods( ['getHeaders'] )
 			->getMock();
 
-		$response->expects( $this->once() )->method( 'getHeaders' )->will( $this->returnValue( [] ) );
 		$this->object->expects( $this->any() )->method( 'getContext' )->will( $this->returnValue( $context ) );
 
 
