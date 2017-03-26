@@ -13,7 +13,7 @@ class AccountControllerTest
 	public function setUp()
 	{
 		\Aimeos\Aimeos\Base::getAimeos(); // initialize autoloader
-		$config = \Aimeos\Aimeos\Base:getConfig();
+		$config = \Aimeos\Aimeos\Base::getConfig();
 
 		$context = new \Aimeos\MShop\Context\Item\Standard();
 		$context->setView( new \Aimeos\MW\View\Standard() );
