@@ -28,7 +28,7 @@ class AccountControllerTest
 			->getMock();
 
 		$response->expects( $this->once() )->method( 'getHeaders' )->will( $this->returnValue( [] ) );
-		$this->object->expects( $this->once() )->method( 'getContext' )->will( $this->returnValue( $context ) );
+		$this->object->expects( $this->any() )->method( 'getContext' )->will( $this->returnValue( $context ) );
 
 
 		$uriBuilder->setRequest( $request );
