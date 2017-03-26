@@ -14,9 +14,13 @@ class AccountControllerTest
 	{
 		\Aimeos\Aimeos\Base::getAimeos(); // initialize autoloader
 
-		$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['aimeos']['aimeos_context_cache'] = function( $context ) {
+		$fcn = function( $context ) {
 			return $context;
 		};
+
+		$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['aimeos']['aimeos_context_groups'] = $fcn;
+		$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['aimeos']['aimeos_context_cache'] = $fcn;
+
 
 		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\AccountController', array( 'dummy' ) );
 
