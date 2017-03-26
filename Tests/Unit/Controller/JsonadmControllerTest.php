@@ -16,6 +16,7 @@ class JsonadmControllerTest
 		$config = \Aimeos\Aimeos\Base::getConfig();
 
 		$context = new \Aimeos\MShop\Context\Item\Standard();
+		$context->setView( new \Aimeos\MW\View\Standard() );
 		$context->setConfig( $config );
 
 		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\JsonadmController', ['getContextBackend'] );
