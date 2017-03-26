@@ -16,8 +16,13 @@ class JsonapiControllerTest
 	public function setUp()
 	{
 		\Aimeos\Aimeos\Base::getAimeos(); // initialize autoloader
+		$config = \Aimeos\Aimeos\Base::getConfig();
 
-		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\JsonapiController', array( 'dummy' ) );
+		$context = new \Aimeos\MShop\Context\Item\Standard();
+		$context->setView( new \Aimeos\MW\View\Standard() );
+		$context->setConfig( $config );
+
+		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\JsonapiController', ['getContext'] );
 
 		$this->request = $this->getMockBuilder( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Request' )
 			->setMethods( array( 'hasArgument', 'getArgument', 'getMethod' ) )

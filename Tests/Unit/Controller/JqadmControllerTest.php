@@ -15,8 +15,13 @@ class JqadmControllerTest
 	public function setUp()
 	{
 		\Aimeos\Aimeos\Base::getAimeos(); // initialize autoloader
+		$config = \Aimeos\Aimeos\Base::getConfig();
 
-		$this->object = $this->getAccessibleMock( 'Aimeos\Aimeos\Controller\JqadmController', array( 'dummy' ) );
+		$context = new \Aimeos\MShop\Context\Item\Standard();
+		$context->setConfig( $config );
+
+		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\JqadmController', ['getContextBackend'] );
+		$this->object->expects( $this->any() )->method( 'getContextBackend' )->will( $this->returnValue( $context ) );
 
 		$this->request = $this->getMockBuilder( 'TYPO3\CMS\Extbase\Mvc\Web\Request' )
 			->setMethods( array( 'hasArgument', 'getArgument' ) )

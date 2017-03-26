@@ -19,7 +19,7 @@ class ExtadmControllerTest
 		$context->setView( new \Aimeos\MW\View\Standard() );
 		$context->setConfig( $config );
 
-		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\ExtadmController', ['getContext'] );
+		$this->object = $this->getAccessibleMock( 'Aimeos\\Aimeos\\Controller\\ExtadmController', ['getContextBackend'] );
 		$this->view = $this->getMock( 'TYPO3\\CMS\\Fluid\\View\\TemplateView', array(), array(), '', false );
 
 		$uriBuilder = $this->getMockBuilder( 'TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder' )->getMock();
@@ -28,7 +28,7 @@ class ExtadmControllerTest
 			->setMethods( ['getHeaders'] )
 			->getMock();
 
-		$this->object->expects( $this->any() )->method( 'getContext' )->will( $this->returnValue( $context ) );
+		$this->object->expects( $this->any() )->method( 'getContextBackend' )->will( $this->returnValue( $context ) );
 
 
 		$uriBuilder->setRequest( $request );
